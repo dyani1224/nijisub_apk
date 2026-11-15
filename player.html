@@ -1,0 +1,6 @@
+<!doctype html><html lang="ko"><head><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><style>html,body{margin:0;background:#000;width:100%;height:100%;overflow:hidden}#player{position:absolute;inset:0}iframe{width:100%;height:100%}</style></head><body><div id="player"></div><script src="https://www.youtube.com/iframe_api"></script><script>
+let player, ready=false, pending=null;
+function onYouTubeIframeAPIReady(){player=new YT.Player('player',{width:'100%',height:'100%',playerVars:{playsinline:1,enablejsapi:1,origin:'https://localhost'},events:{onReady:()=>{ready=true;if(pending)loadVideo(pending)}}});}
+function loadVideo(id){if(!ready){pending=id;return;}pending=null;player.loadVideoById(id)}
+function currentTime(){try{return player&&ready?player.getCurrentTime():0}catch(e){return 0}}
+</script></body></html>
